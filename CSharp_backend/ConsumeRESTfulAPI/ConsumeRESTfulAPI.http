@@ -1,0 +1,6 @@
+@ConsumeRESTfulAPI_HostAddress = http://localhost:5283
+
+GET {{ConsumeRESTfulAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
