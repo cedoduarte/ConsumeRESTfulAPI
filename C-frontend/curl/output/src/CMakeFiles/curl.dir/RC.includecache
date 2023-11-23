@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/include/curl/curlver.h
+
+C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/src/curl.rc
+winver.h
+-
+tool_version.h
+C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/src/tool_version.h
+
+C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/src/tool_version.h
+curl/curlver.h
+-
+

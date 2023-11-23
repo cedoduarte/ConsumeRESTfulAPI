@@ -1,0 +1,102 @@
+Determining if the function idn2_lookup_ul exists in the idn2 failed with the following output:
+Change Dir: C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe -f Makefile cmTC_f09a2/fast && C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_f09a2.dir\build.make CMakeFiles/cmTC_f09a2.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f09a2.dir/CheckFunctionExists.c.obj
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe   -W -Wall -pedantic -Wbad-function-cast -Wconversion -Winline -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Wcast-align -Wdeclaration-after-statement -Wempty-body -Wendif-labels -Wfloat-equal -Wignored-qualifiers -Wno-format-nonliteral -Wno-sign-conversion -Wno-system-headers -Wold-style-definition -Wstrict-prototypes -Wtype-limits -Wvla -Wclobbered -Wmissing-parameter-type -Wold-style-declaration -Wstrict-aliasing=3 -Wno-pedantic-ms-format -Wformat=2 -Warray-bounds=2 -ftree-vrp -Wduplicated-cond -Wnull-dereference -fdelete-null-pointer-checks -Wshift-negative-value -Wshift-overflow=2 -Walloc-zero -Wduplicated-branches -Wformat-overflow=2 -Wformat-truncation=2 -Wrestrict -Warith-conversion -Wdouble-promotion -Wenum-conversion -Wunused-const-variable -DCHECK_FUNCTION_EXISTS=idn2_lookup_ul -o CMakeFiles\cmTC_f09a2.dir\CheckFunctionExists.c.obj -c C:\Qt\Tools\CMake_64\share\cmake-3.24\Modules\CheckFunctionExists.c
+Linking C executable cmTC_f09a2.exe
+C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_link_script CMakeFiles\cmTC_f09a2.dir\link.txt --verbose=1
+C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\cmTC_f09a2.dir/objects.a
+C:\Qt\Tools\mingw1120_64\bin\ar.exe qc CMakeFiles\cmTC_f09a2.dir/objects.a @CMakeFiles\cmTC_f09a2.dir\objects1.rsp
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe   -W -Wall -pedantic -Wbad-function-cast -Wconversion -Winline -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Wcast-align -Wdeclaration-after-statement -Wempty-body -Wendif-labels -Wfloat-equal -Wignored-qualifiers -Wno-format-nonliteral -Wno-sign-conversion -Wno-system-headers -Wold-style-definition -Wstrict-prototypes -Wtype-limits -Wvla -Wclobbered -Wmissing-parameter-type -Wold-style-declaration -Wstrict-aliasing=3 -Wno-pedantic-ms-format -Wformat=2 -Warray-bounds=2 -ftree-vrp -Wduplicated-cond -Wnull-dereference -fdelete-null-pointer-checks -Wshift-negative-value -Wshift-overflow=2 -Walloc-zero -Wduplicated-branches -Wformat-overflow=2 -Wformat-truncation=2 -Wrestrict -Warith-conversion -Wdouble-promotion -Wenum-conversion -Wunused-const-variable -DCHECK_FUNCTION_EXISTS=idn2_lookup_ul -Wl,--whole-archive CMakeFiles\cmTC_f09a2.dir/objects.a -Wl,--no-whole-archive -o cmTC_f09a2.exe -Wl,--out-implib,libcmTC_f09a2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_f09a2.dir\linklibs.rsp
+C:/Qt/Tools/mingw1120_64/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot find -lidn2
+collect2.exe: error: ld returned 1 exit status
+mingw32-make.exe[1]: *** [CMakeFiles\cmTC_f09a2.dir\build.make:100: cmTC_f09a2.exe] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp'
+mingw32-make.exe: *** [Makefile:126: cmTC_f09a2/fast] Error 2
+
+
+
+Determining size of ADDRESS_FAMILY failed with the following output:
+Change Dir: C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe -f Makefile cmTC_e3f30/fast && C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_e3f30.dir\build.make CMakeFiles/cmTC_e3f30.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e3f30.dir/SIZEOF_ADDRESS_FAMILY.c.obj
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe   -W -Wall -pedantic -Wbad-function-cast -Wconversion -Winline -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-long-long -Wno-multichar -Wpointer-arith -Wshadow -Wsign-compare -Wundef -Wunused -Wwrite-strings -Wcast-align -Wdeclaration-after-statement -Wempty-body -Wendif-labels -Wfloat-equal -Wignored-qualifiers -Wno-format-nonliteral -Wno-sign-conversion -Wno-system-headers -Wold-style-definition -Wstrict-prototypes -Wtype-limits -Wvla -Wclobbered -Wmissing-parameter-type -Wold-style-declaration -Wstrict-aliasing=3 -Wno-pedantic-ms-format -Wformat=2 -Warray-bounds=2 -ftree-vrp -Wduplicated-cond -Wnull-dereference -fdelete-null-pointer-checks -Wshift-negative-value -Wshift-overflow=2 -Walloc-zero -Wduplicated-branches -Wformat-overflow=2 -Wformat-truncation=2 -Wrestrict -Warith-conversion -Wdouble-promotion -Wenum-conversion -Wunused-const-variable  -o CMakeFiles\cmTC_e3f30.dir\SIZEOF_ADDRESS_FAMILY.c.obj -c C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\curl\output\CMakeFiles\CheckTypeSize\SIZEOF_ADDRESS_FAMILY.c
+In file included from C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\curl\output\CMakeFiles\CheckTypeSize\SIZEOF_ADDRESS_FAMILY.c:4:
+C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/ws2def.h:31:9: error: unknown type name 'ULONG'
+   31 |         ULONG   Zone : 28;
+      |         ^~~~~
+C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/ws2def.h:32:9: error: unknown type name 'ULONG'
+   32 |         ULONG   Level : 4;
+      |         ^~~~~
+C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/ws2def.h:34:5: error: unknown type name 'ULONG'
+   34 |     ULONG Value;
+      |     ^~~~~
+C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\curl\output\CMakeFiles\CheckTypeSize\SIZEOF_ADDRESS_FAMILY.c:28:22: error: 'ADDRESS_FAMILY' undeclared here (not in a function)
+   28 | #define SIZE (sizeof(ADDRESS_FAMILY))
+      |                      ^~~~~~~~~~~~~~
+C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\curl\output\CMakeFiles\CheckTypeSize\SIZEOF_ADDRESS_FAMILY.c:30:12: note: in expansion of macro 'SIZE'
+   30 |   ('0' + ((SIZE / 10000)%10)),
+      |            ^~~~
+mingw32-make.exe[1]: *** [CMakeFiles\cmTC_e3f30.dir\build.make:77: CMakeFiles/cmTC_e3f30.dir/SIZEOF_ADDRESS_FAMILY.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CMakeTmp'
+mingw32-make.exe: *** [Makefile:126: cmTC_e3f30/fast] Error 2
+
+
+C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/curl/output/CMakeFiles/CheckTypeSize/SIZEOF_ADDRESS_FAMILY.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+#include "ws2def.h"
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__PPC64__)
+# define KEY '_','_','P','P','C','6','4','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#elif defined(__PPC__)
+# define KEY '_','_','P','P','C','_','_'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__aarch64__)
+# define KEY '_','_','a','a','r','c','h','6','4','_','_'
+#elif defined(__ARM_ARCH_7A__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','A','_','_'
+#elif defined(__ARM_ARCH_7S__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','S','_','_'
+#endif
+
+#define SIZE (sizeof(ADDRESS_FAMILY))
+static char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
