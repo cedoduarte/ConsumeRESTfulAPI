@@ -21,6 +21,16 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Command.UpdateDevice
                 {
                     throw new Exception("The name cannot be empty!");
                 }
+
+                // checks the current user exists
+                User? currentUser = await _dbContext.Users
+                    .Where(user => user.Id == command.CurrentUserId && !user.IsDeleted)
+                    .FirstOrDefaultAsync(cancel);
+                if (currentUser is null)
+                {
+                    throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
+                }
+
                 Device? existingDevice = await _dbContext.Devices
                     .Where(device => !device.IsDeleted && device.Id == command.Id)
                     .FirstOrDefaultAsync(cancel);

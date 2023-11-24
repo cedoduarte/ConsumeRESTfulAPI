@@ -46,6 +46,16 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.UpdateUser
                 {
                     throw new Exception("The city cannot be empty!");
                 }
+
+                // checks the current user exists
+                User? currentUser = await _dbContext.Users
+                    .Where(user => user.Id == command.CurrentUserId && !user.IsDeleted)
+                    .FirstOrDefaultAsync(cancel);
+                if (currentUser is null)
+                {
+                    throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
+                }
+
                 User? existingUser = await _dbContext.Users
                     .Where(user => !user.IsDeleted && user.Id == command.Id)
                     .FirstOrDefaultAsync(cancel);

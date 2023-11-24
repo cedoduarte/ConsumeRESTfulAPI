@@ -14,6 +14,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.CreateUser
             _dbContext = dbContext;
         }
 
+        // the user is created by himself
         public async Task<bool> Handle(CreateUserCommand command, CancellationToken cancel)
         {
             try

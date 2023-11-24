@@ -2,18 +2,18 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsumeRESTfulAPI.CQRS.Devices.Command.CreateDevice
+namespace ConsumeRESTfulAPI.CQRS.Products.Command.UpdateProduct
 {
-    public class CreateDeviceHandler : IRequestHandler<CreateDeviceCommand, bool>
+    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, bool>
     {
         private readonly AppDbContext _dbContext;
 
-        public CreateDeviceHandler(AppDbContext dbContext)
+        public UpdateProductHandler(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<bool> Handle(CreateDeviceCommand command, CancellationToken cancel)
+        public async Task<bool> Handle(UpdateProductCommand command, CancellationToken cancel)
         {
             try
             {
@@ -31,13 +31,18 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Command.CreateDevice
                     throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
                 }
 
-                await _dbContext.Devices.AddAsync(new Device()
+                Product? existingProduct = await _dbContext.Products
+                    .Where(product => !product.IsDeleted && product.Id == command.Id)
+                    .FirstOrDefaultAsync(cancel);
+                if (existingProduct is null)
                 {
-                    Name = command.Name,
-                    UserId = command.UserId,
-                    Price = command.Price,
-                    CurrentUserId = command.CurrentUserId
-                }, cancel);
+                    throw new Exception($"{nameof(Product)} with ID {command.Id} not exists!");
+                }
+                existingProduct.Name = command.Name;
+                existingProduct.Price = command.Price;
+                existingProduct.QuantityInStock = command.QuantityInStock;
+                existingProduct.CurrentUserId = command.CurrentUserId;
+                _dbContext.Products.Update(existingProduct);
                 await _dbContext.SaveChangesAsync(cancel);
                 return true;
             }

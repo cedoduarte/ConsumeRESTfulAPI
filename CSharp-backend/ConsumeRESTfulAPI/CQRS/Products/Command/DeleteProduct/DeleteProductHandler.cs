@@ -2,18 +2,18 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsumeRESTfulAPI.CQRS.Devices.Command.DeleteDevice
+namespace ConsumeRESTfulAPI.CQRS.Products.Command.DeleteProduct
 {
-    public class DeleteDeviceHandler : IRequestHandler<DeleteDeviceCommand, bool>
+    public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, bool>
     {
         private readonly AppDbContext _dbContext;
 
-        public DeleteDeviceHandler(AppDbContext dbContext)
+        public DeleteProductHandler(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<bool> Handle(DeleteDeviceCommand command, CancellationToken cancel)
+        public async Task<bool> Handle(DeleteProductCommand command, CancellationToken cancel)
         {
             try
             {
@@ -26,17 +26,17 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Command.DeleteDevice
                     throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
                 }
 
-                Device? existingDevice = await _dbContext.Devices
-                    .Where(device => !device.IsDeleted && device.Id == command.Id)
+                Product? existingProduct = await _dbContext.Products
+                    .Where(product => !product.IsDeleted && product.Id == command.Id)
                     .FirstOrDefaultAsync(cancel);
-                if (existingDevice is null)
+                if (existingProduct is null)
                 {
-                    throw new Exception($"{nameof(Device)} with ID {command.Id} not exists!");
+                    throw new Exception($"{nameof(Product)} with ID {command.Id} not exists!");
                 }
-                existingDevice.IsDeleted = true;
-                existingDevice.DeletedDateTime = DateTime.Now;
-                existingDevice.CurrentUserId = command.CurrentUserId;
-                _dbContext.Devices.Update(existingDevice);
+                existingProduct.IsDeleted = true;
+                existingProduct.DeletedDateTime = DateTime.Now;
+                existingProduct.CurrentUserId = command.CurrentUserId;
+                _dbContext.Products.Update(existingProduct);
                 await _dbContext.SaveChangesAsync(cancel);
                 return true;
             }

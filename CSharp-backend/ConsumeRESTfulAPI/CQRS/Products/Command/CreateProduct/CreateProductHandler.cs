@@ -2,18 +2,18 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsumeRESTfulAPI.CQRS.Devices.Command.CreateDevice
+namespace ConsumeRESTfulAPI.CQRS.Products.Command.CreateProduct
 {
-    public class CreateDeviceHandler : IRequestHandler<CreateDeviceCommand, bool>
+    public class CreateProductHandler : IRequestHandler<CreateProductCommand, bool>
     {
         private readonly AppDbContext _dbContext;
 
-        public CreateDeviceHandler(AppDbContext dbContext)
+        public CreateProductHandler(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<bool> Handle(CreateDeviceCommand command, CancellationToken cancel)
+        public async Task<bool> Handle(CreateProductCommand command, CancellationToken cancel)
         {
             try
             {
@@ -31,11 +31,11 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Command.CreateDevice
                     throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
                 }
 
-                await _dbContext.Devices.AddAsync(new Device()
+                await _dbContext.Products.AddAsync(new Product()
                 {
                     Name = command.Name,
-                    UserId = command.UserId,
                     Price = command.Price,
+                    QuantityInStock = command.QuantityInStock,
                     CurrentUserId = command.CurrentUserId
                 }, cancel);
                 await _dbContext.SaveChangesAsync(cancel);

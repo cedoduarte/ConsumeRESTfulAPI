@@ -20,9 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Products\Command\CreateProduct\" />
-    <Folder Include="CQRS\Products\Command\DeleteProduct\" />
-    <Folder Include="CQRS\Products\Command\UpdateProduct\" />
     <Folder Include="CQRS\Products\Query\GetProductById\" />
     <Folder Include="CQRS\Products\Query\GetProductList\" />
     <Folder Include="CQRS\Products\Query\GetProductByIdEvenDeleted\" />

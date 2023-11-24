@@ -1,5 +1,4 @@
-﻿using ConsumeRESTfulAPI.Model;
-using MediatR;
+﻿using MediatR;
 
 namespace ConsumeRESTfulAPI.CQRS.Users.Command.CreateUser
 {

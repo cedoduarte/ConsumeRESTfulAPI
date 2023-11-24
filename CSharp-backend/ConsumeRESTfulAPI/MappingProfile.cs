@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ConsumeRESTfulAPI.CQRS.Device.ViewModel;
+using ConsumeRESTfulAPI.CQRS.Devices.ViewModel;
 using ConsumeRESTfulAPI.CQRS.Products.ViewModel;
 using ConsumeRESTfulAPI.CQRS.Users.ViewModel;
 using ConsumeRESTfulAPI.Model;
