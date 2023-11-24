@@ -40,9 +40,13 @@ void sha256_transform(SHA256_CTX *ctx, uchar data[])
     uint a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];
 
     for (i = 0, j = 0; i < 16; ++i, j += 4)
+    {
         m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
+    }
     for (; i < 64; ++i)
+    {
         m[i] = SIG1(m[i - 2]) + m[i - 7] + SIG0(m[i - 15]) + m[i - 16];
+    }
 
     a = ctx->state[0];
     b = ctx->state[1];
@@ -115,13 +119,17 @@ void sha256_final(SHA256_CTX *ctx, uchar hash[])
     {
         ctx->data[i++] = 0x80;
         while (i < 56)
+        {
             ctx->data[i++] = 0x00;
+        }
     }
     else
     {
         ctx->data[i++] = 0x80;
         while (i < 64)
+        {
             ctx->data[i++] = 0x00;
+        }
         sha256_transform(ctx, ctx->data);
         memset(ctx->data, 0, 56);
     }
@@ -150,12 +158,12 @@ void sha256_final(SHA256_CTX *ctx, uchar hash[])
     }
 }
 
-char* to_sha256(char *data)
+char* to_sha256(char data[])
 {
     int strLen = strlen(data);
     SHA256_CTX ctx;
     unsigned char hash[32];
-    char* hashStr = malloc(65);
+    char *hashStr = malloc(65);
     strcpy(hashStr, "");
 
     sha256_init(&ctx);

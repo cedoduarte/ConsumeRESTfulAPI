@@ -30,22 +30,17 @@ int util_regex_match(char input[], char rx[])
         return RX_MATCH_ERROR;
     }
 
-    // Test strings
-    const UChar *test_strings[] = {(const UChar *) input};
-
-    // Try matching each test string against the compiled regular expression
-    for (size_t i = 0; i < sizeof(test_strings) / sizeof(test_strings[0]); ++i)
+    // Try matching test string against the compiled regular expression
+    const UChar *testString = (const UChar *) input;
+    OnigRegion *region = onig_region_new();
+    int match_result = onig_search(regex, testString, testString + onigenc_str_bytelen_null(enc, testString),
+                                    testString, testString + onigenc_str_bytelen_null(enc, testString), region,
+                                    ONIG_OPTION_NONE);
+    if (match_result == ONIG_MISMATCH)
     {
-        OnigRegion *region = onig_region_new();
-        int match_result = onig_search(regex, test_strings[i], test_strings[i] + onigenc_str_bytelen_null(enc,
-            test_strings[i]), test_strings[i], test_strings[i] + onigenc_str_bytelen_null(enc, test_strings[i]),
-                region, ONIG_OPTION_NONE);
-        if (match_result == ONIG_MISMATCH)
-        {
-            return RX_MATCH_ERROR;
-        }
-        onig_region_free(region, 1);
+        return RX_MATCH_ERROR;
     }
+    onig_region_free(region, 1);
 
     // Free resources
     onig_free(regex);
