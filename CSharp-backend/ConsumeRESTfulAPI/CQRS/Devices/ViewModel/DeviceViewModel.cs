@@ -1,6 +1,6 @@
-﻿using ConsumeRESTfulAPI.CQRS.User.ViewModel;
+﻿using ConsumeRESTfulAPI.CQRS.Users.ViewModel;
 
-namespace ConsumeRESTfulAPI.CQRS.Device.ViewModel
+namespace ConsumeRESTfulAPI.CQRS.Devices.ViewModel
 {
     public class DeviceViewModel
     {
@@ -13,7 +13,7 @@ namespace ConsumeRESTfulAPI.CQRS.Device.ViewModel
         public DateTime? InsertedDateTime { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
-        public int CurrentUserId { get; set; }
         public virtual UserViewModel? CurrentUser { get; set; }
+        public int CurrentUserId { get; set; }
     }
 }

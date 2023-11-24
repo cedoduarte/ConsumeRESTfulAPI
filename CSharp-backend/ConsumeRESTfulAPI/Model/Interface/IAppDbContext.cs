@@ -6,5 +6,6 @@ namespace ConsumeRESTfulAPI.Model.Interface
     {
         DbSet<User> Users { get; set; }
         DbSet<Device> Devices { get; set; }
+        DbSet<Product> Products { get; set; }
     }
 }

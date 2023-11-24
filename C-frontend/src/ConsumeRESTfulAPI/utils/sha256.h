@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 // Function to calculate the SHA-256 hash of the input string
-char* SHA256(char* data);
+char* to_sha256(char *data);
 
 #ifdef __cplusplus
 }

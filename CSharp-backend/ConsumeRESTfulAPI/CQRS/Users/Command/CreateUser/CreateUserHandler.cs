@@ -73,7 +73,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.CreateUser
                     Address = command.Address,
                     Country = command.Country,
                     City = command.City,
-                    Salary = command.Salary
+                    Salary = command.Salary,
                 }, cancel);
                 await _dbContext.SaveChangesAsync(cancel);
                 return true;

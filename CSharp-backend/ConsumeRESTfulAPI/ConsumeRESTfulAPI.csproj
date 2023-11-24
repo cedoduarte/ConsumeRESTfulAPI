@@ -20,11 +20,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Devices\Command\" />
-    <Folder Include="CQRS\Devices\Query\" />
-    <Folder Include="CQRS\Users\Command\DeleteUser\" />
-    <Folder Include="CQRS\Users\Command\UpdateUser\" />
-    <Folder Include="CQRS\Users\Command\RestoreUser\" />
+    <Folder Include="CQRS\Devices\Command\CreateDevice\" />
+    <Folder Include="CQRS\Devices\Command\DeleteDevice\" />
+    <Folder Include="CQRS\Devices\Command\UpdateDevice\" />
+    <Folder Include="CQRS\Products\Command\CreateProduct\" />
+    <Folder Include="CQRS\Products\Command\DeleteProduct\" />
+    <Folder Include="CQRS\Products\Command\UpdateProduct\" />
+    <Folder Include="CQRS\Products\Query\GetProductById\" />
+    <Folder Include="CQRS\Products\Query\GetProductList\" />
+    <Folder Include="CQRS\Products\Query\GetProductByIdEvenDeleted\" />
+    <Folder Include="CQRS\Products\Query\GetProductListIncludeDeleted\" />
   </ItemGroup>
 
 </Project>

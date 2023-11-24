@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BMZdFjUPCvCxRMory0QY3uf36N/cvd/hNIWFb6kSvw82IgozXbwLJ8iuRvR7WUJZ2urhiV4yhkPjQTNK/zCocA==",
+  "dgSpecHash": "omkhUdXz9i11iiWYIQ5JvJKODeoY5LEXhkEjmtLd9CxEgjWMtSF/0pV2S4qLgkPEef6ly8gmpEeUq2FTFMWPxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Documentos\\QtProjects\\ConsumeRESTfulAPI\\CSharp_backend\\ConsumeRESTfulAPI\\ConsumeRESTfulAPI.csproj",
+  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Documentos\\QtProjects\\ConsumeRESTfulAPI\\CSharp-backend\\ConsumeRESTfulAPI\\ConsumeRESTfulAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

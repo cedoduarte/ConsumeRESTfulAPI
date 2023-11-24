@@ -69,6 +69,7 @@ namespace ConsumeRESTfulAPI
             builder.Services.AddTransient<IAppDbContext, AppDbContext>();
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<IDeviceService, DeviceService>();
+            builder.Services.AddTransient<IProductService, ProductService>();
             var automapperConfiguration = new MapperConfiguration(mapper =>
             {
                 mapper.AddProfile(new MappingProfile());

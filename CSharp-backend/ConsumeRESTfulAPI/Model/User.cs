@@ -15,5 +15,6 @@
         public DateTime? UpdatedDateTime { get; set; } = DateTime.Now;
         public DateTime? DeletedDateTime { get; set; }
         public virtual User? CurrentUser { get; set; }
+        public int CurrentUserId { get; set; }
     }
 }

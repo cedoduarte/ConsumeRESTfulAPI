@@ -52,6 +52,8 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.ChangePassword
                     throw new Exception($"{nameof(User)} with email {command.Email} not exists!");
                 }
                 existingUser.Password = Util.ToSHA256(command.NewPassword);
+                existingUser.UpdatedDateTime = DateTime.Now;
+                existingUser.CurrentUserId = existingUser.Id;
                 _dbContext.Users.Update(existingUser);
                 await _dbContext.SaveChangesAsync(cancel);
                 return true;

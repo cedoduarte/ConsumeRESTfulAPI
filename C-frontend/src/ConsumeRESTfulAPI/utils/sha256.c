@@ -35,7 +35,7 @@ uint k[64] = {
     0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
 };
 
-void SHA256Transform(SHA256_CTX *ctx, uchar data[])
+void sha256_transform(SHA256_CTX *ctx, uchar data[])
 {
     uint a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];
 
@@ -77,7 +77,7 @@ void SHA256Transform(SHA256_CTX *ctx, uchar data[])
     ctx->state[7] += h;
 }
 
-void SHA256Init(SHA256_CTX *ctx)
+void sha256_init(SHA256_CTX *ctx)
 {
     ctx->datalen = 0;
     ctx->bitlen[0] = 0;
@@ -92,7 +92,7 @@ void SHA256Init(SHA256_CTX *ctx)
     ctx->state[7] = 0x5be0cd19;
 }
 
-void SHA256Update(SHA256_CTX *ctx, uchar data[], uint len)
+void sha256_update(SHA256_CTX *ctx, uchar data[], uint len)
 {
     for (uint i = 0; i < len; ++i)
     {
@@ -100,14 +100,14 @@ void SHA256Update(SHA256_CTX *ctx, uchar data[], uint len)
         ctx->datalen++;
         if (ctx->datalen == 64)
         {
-            SHA256Transform(ctx, ctx->data);
+            sha256_transform(ctx, ctx->data);
             DBL_INT_ADD(ctx->bitlen[0], ctx->bitlen[1], 512);
             ctx->datalen = 0;
         }
     }
 }
 
-void SHA256Final(SHA256_CTX *ctx, uchar hash[])
+void sha256_final(SHA256_CTX *ctx, uchar hash[])
 {
     uint i = ctx->datalen;
 
@@ -122,7 +122,7 @@ void SHA256Final(SHA256_CTX *ctx, uchar hash[])
         ctx->data[i++] = 0x80;
         while (i < 64)
             ctx->data[i++] = 0x00;
-        SHA256Transform(ctx, ctx->data);
+        sha256_transform(ctx, ctx->data);
         memset(ctx->data, 0, 56);
     }
 
@@ -135,7 +135,7 @@ void SHA256Final(SHA256_CTX *ctx, uchar hash[])
     ctx->data[58] = ctx->bitlen[1] >> 8;
     ctx->data[57] = ctx->bitlen[1] >> 16;
     ctx->data[56] = ctx->bitlen[1] >> 24;
-    SHA256Transform(ctx, ctx->data);
+    sha256_transform(ctx, ctx->data);
 
     for (i = 0; i < 4; ++i)
     {
@@ -150,7 +150,7 @@ void SHA256Final(SHA256_CTX *ctx, uchar hash[])
     }
 }
 
-char* SHA256(char* data)
+char* to_sha256(char *data)
 {
     int strLen = strlen(data);
     SHA256_CTX ctx;
@@ -158,9 +158,9 @@ char* SHA256(char* data)
     char* hashStr = malloc(65);
     strcpy(hashStr, "");
 
-    SHA256Init(&ctx);
-    SHA256Update(&ctx, data, strLen);
-    SHA256Final(&ctx, hash);
+    sha256_init(&ctx);
+    sha256_update(&ctx, data, strLen);
+    sha256_final(&ctx, hash);
 
     char s[3];
     for (int i = 0; i < 32; i++)

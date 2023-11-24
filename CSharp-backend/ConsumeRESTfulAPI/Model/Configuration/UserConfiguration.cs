@@ -39,7 +39,7 @@ namespace ConsumeRESTfulAPI.Model.Configuration
                 .HasColumnType("DATETIME");
             builder.Property(user => user.DeletedDateTime)
                 .HasColumnType("DATETIME");
-            builder.Property(user => user.CurrentUser)
+            builder.Property(user => user.CurrentUserId)
                 .HasColumnType("INTEGER");
         }
     }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-
-namespace ConsumeRESTfulAPI.Model
+﻿namespace ConsumeRESTfulAPI.Model
 {
     public class Device
     {
@@ -13,7 +11,7 @@ namespace ConsumeRESTfulAPI.Model
         public DateTime? InsertedDateTime { get; set; } = DateTime.Now;
         public DateTime? UpdatedDateTime { get; set; } = DateTime.Now;
         public DateTime? DeletedDateTime { get; set; }
-        public int CurrentUserId { get; set; }
         public virtual User? CurrentUser { get; set; }
+        public int CurrentUserId { get; set; }
     }
 }

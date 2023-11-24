@@ -95,7 +95,7 @@ static int seeding_default_users(sqlite3 *db)
     char hashArray[DEFAULT_USER_COUNT][128];
     for (int i = 0; i < DEFAULT_USER_COUNT; i++)
     {
-        char *hash = SHA256(passwords[i]);
+        char *hash = to_sha256(passwords[i]);
         sprintf(hashArray[i], hash);
         free(hash);
     }

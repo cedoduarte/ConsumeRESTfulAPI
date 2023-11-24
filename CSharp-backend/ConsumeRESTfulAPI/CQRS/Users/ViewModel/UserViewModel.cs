@@ -15,5 +15,6 @@
         public DateTime? UpdatedDateTime { get; set; }
         public DateTime? DeletedDateTime { get; set; }
         public UserViewModel? CurrentUser { get; set; }
+        public int CurrentUserId {  get; set; }
     }
 }

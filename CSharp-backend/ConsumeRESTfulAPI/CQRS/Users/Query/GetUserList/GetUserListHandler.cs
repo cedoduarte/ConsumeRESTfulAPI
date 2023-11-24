@@ -23,23 +23,22 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserList
             {
                 if (query.GetAll)
                 {
-                    return _mapper.Map<IEnumerable<UserViewModel>>(
-                        await _dbContext.Users
-                            .Where(user => !user.IsDeleted)
-                            .ToListAsync(cancel));
+                    return _mapper.Map<IEnumerable<UserViewModel>>(await _dbContext.Users
+                        .Where(user => !user.IsDeleted)
+                        .ToListAsync(cancel));
                 }
                 if (!string.IsNullOrEmpty(query.Keyword))
                 {
-                    _mapper.Map<IEnumerable<UserViewModel>>(await _dbContext.Users
+                    return _mapper.Map<IEnumerable<UserViewModel>>(await _dbContext.Users
                         .Where(user => !user.IsDeleted
                                        && (
-                                       !string.IsNullOrEmpty(user.Name) && user.Name.ToLower().Contains(query.Keyword.ToLower())
-                                       || !string.IsNullOrEmpty(user.Email) && user.Email.ToLower().Contains(query.Keyword.ToLower())
-                                       || !string.IsNullOrEmpty(user.Address) && user.Address.ToLower().Contains(query.Keyword.ToLower())
-                                       || !string.IsNullOrEmpty(user.Country) && user.Country.ToLower().Contains(query.Keyword.ToLower())
-                                       || !string.IsNullOrEmpty(user.City) && user.City.ToLower().Contains(query.Keyword.ToLower())
-                                       || user.Salary.ToString().Contains(query.Keyword.ToLower())                    
-                    )).ToListAsync(cancel));
+                                       !string.IsNullOrEmpty(user.Name) && user.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                       || !string.IsNullOrEmpty(user.Email) && user.Email.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                       || !string.IsNullOrEmpty(user.Address) && user.Address.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                       || !string.IsNullOrEmpty(user.Country) && user.Country.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                       || !string.IsNullOrEmpty(user.City) && user.City.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                       || user.Salary.ToString().Contains(query.Keyword.ToLower().Trim())))
+                        .ToListAsync(cancel));
                 }
                 throw new Exception("The keyword cannot be empty!");
             }

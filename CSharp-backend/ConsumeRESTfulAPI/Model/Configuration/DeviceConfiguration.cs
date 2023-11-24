@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ConsumeRESTfulAPI.Model.Configuration
 {
-    public class DeviceConfiguration
+    public class DeviceConfiguration : IEntityTypeConfiguration<Device>
     {
         public void Configure(EntityTypeBuilder<Device> builder)
         {
