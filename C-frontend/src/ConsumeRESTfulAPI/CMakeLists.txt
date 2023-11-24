@@ -8,6 +8,8 @@ set(PROJECT_FILES
     application.h
     local_storage.c
     local_storage.h
+    utils/regular_expression.c
+    utils/regular_expression.h
     utils/restful.c
     utils/restful.h
     utils/sha256.c
@@ -17,13 +19,15 @@ set(PROJECT_FILES
 )
 
 set(LIBS_DIR
-    ../../curl/output/lib
+    ../../3rdparty/curl/output/lib
+    ../../3rdparty/oniguruma/output
     "C:/Program Files/MariaDB 11.0/lib"
     C:/msys64/mingw64/bin
 )
 
 set(INCLUDE_DIRS
-    ../../curl/include
+    ../../3rdparty/curl/include
+    ../../3rdparty/oniguruma/src
     "C:/Program Files/MariaDB 11.0/include"
     C:/msys64/mingw64/include/gtk-4.0
     C:/msys64/mingw64/include/pango-1.0
@@ -47,6 +51,9 @@ target_link_directories(ConsumeRESTfulAPI PRIVATE ${LIBS_DIR})
 
 # curl link library
 target_link_libraries(ConsumeRESTfulAPI PRIVATE libcurl)
+
+# oniguruma link library
+target_link_libraries(ConsumeRESTfulAPI PRIVATE libonig)
 
 # mariadb link lbrary
 target_link_libraries(ConsumeRESTfulAPI PRIVATE libmariadb)
