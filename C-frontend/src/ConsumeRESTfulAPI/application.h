@@ -8,7 +8,11 @@
 extern "C" {
 #endif
 
-int app_setup_local_storage(void);
+#define APP_OK 0
+#define APP_ERROR 1
+
+int app_setup_local_storage(char filename[]);
+int app_populate_database(char server[], char user[], char password[], char database[]);
 
 #ifdef __cplusplus
 }

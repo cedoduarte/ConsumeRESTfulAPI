@@ -3,6 +3,8 @@
 
 #include "utils/sqlite3.h"
 
+#define LOCAL_STORAGE_FILENAME "consumeRESTfulAPI_storage.sqlite"
+
 /*
 ** Make sure we can call this stuff from C++.
 */

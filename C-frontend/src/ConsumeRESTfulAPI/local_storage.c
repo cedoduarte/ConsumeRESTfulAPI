@@ -7,7 +7,9 @@
 
 #define DEFAULT_USER_COUNT 10
 
-static int execute_sql_with_no_data_return(sqlite3 *db, const char *sql, const char *succeedMessage)
+static int local_storage_execute_sql_with_no_data_return(sqlite3 *db,
+                                                             const char *sql,
+                                                             const char *succeedMessage)
 {
     // Execute the SQL statement
     char *errMsg = NULL;
@@ -26,10 +28,10 @@ static int execute_sql_with_no_data_return(sqlite3 *db, const char *sql, const c
     return SQLITE_OK;
 }
 
-static int create_user_table(sqlite3 *db)
+static int local_storage_create_user_table(sqlite3 *db)
 {
     // SQL statement to create a table
-    return execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS user("
+    return local_storage_execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS user("
                                                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                                                "name VARCHAR(256) NOT NULL,"
                                                "email VARCHAR(256) NOT NULL,"
@@ -42,14 +44,15 @@ static int create_user_table(sqlite3 *db)
                                                "inserted_date_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
                                                "updated_date_time DATETIME DEFAULT CURRENT_TIMESTAMP,"
                                                "deleted_date_time DATETIME DEFAULT NULL,"
-                                               "current_user INTEGER DEFAULT NULL"
+                                               "current_user INTEGER DEFAULT NULL,"
+                                               "birthdate DATETIME NOT NULL"
                                                ");", "Table created successfully\n");
 }
 
-static int create_device_table(sqlite3 *db)
+static int local_storage_create_device_table(sqlite3 *db)
 {
     // SQL statement to create a table
-    return execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS device("
+    return local_storage_execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS device("
                                                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                                                "name VARCHAR(128) NOT NULL,"
                                                "user_id INTEGER NOT NULL,"
@@ -62,10 +65,10 @@ static int create_device_table(sqlite3 *db)
                                                ");", "Table created successfully\n");
 }
 
-static int create_product_table(sqlite3 *db)
+static int local_storage_create_product_table(sqlite3 *db)
 {
     // SQL statement to create a table
-    return execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS product("
+    return local_storage_execute_sql_with_no_data_return(db, "CREATE TABLE IF NOT EXISTS product("
                                                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                                                "name VARCHAR(128) NOT NULL,"
                                                "price REAL NOT NULL,"
@@ -78,7 +81,7 @@ static int create_product_table(sqlite3 *db)
                                                ");", "Table created successfully\n");
 }
 
-static int seeding_default_users(sqlite3 *db)
+static int local_storage_seeding_default_users(sqlite3 *db)
 {
     char *passwords[DEFAULT_USER_COUNT] = {
         "root",       // administrator
@@ -102,16 +105,16 @@ static int seeding_default_users(sqlite3 *db)
 
     // SQL statement to insert data into the table
     char sql[2700];
-    sprintf(sql, "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('root'                       ,'root@local'                ,'%s','none'                  ,'none'     ,'none'            ,0.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Carlos Enrique Duarte Ortiz','carlosduarte.1@hotmail.com','%s','Esperanza 1515'        ,'México'   ,'Hermosillo'      ,50000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Ana Lourdes Peña López'     ,'analourdes@hotmail.com'    ,'%s','Palermo 23'            ,'Argentina','Buenos Aires'    ,45000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Kévin Ozuna Pérez'          ,'kevinozuna@gmail.com'      ,'%s','Bachoco 45'            ,'México'   ,'Hermosillo'      ,55000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Javier Domínguez Rodríguez' ,'javierdomi@gmail.com'      ,'%s','Polanco 35'            ,'México'   ,'Ciudad de México',42000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Gabriel Prado Ramírez'      ,'gabryprado@hotmail.com'    ,'%s','Conquistadores 25'     ,'Colombia' ,'Bogotá'          ,36000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Óscar Salazar Ozuna'        ,'oscarsala@hotmail.com'     ,'%s','Simón Bolívar 78'      ,'Venezuela','Caracas'         ,19852.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Christian Miranda Robles'   ,'christianmira10@gmail.com' ,'%s','Mártires de Cananea 22','México'   ,'Hermosillo'      ,41000.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Rosa Grácia Juárez'         ,'rosagracia1@hotmail.com'   ,'%s','Hacienda Cazadores 33' ,'México'   ,'Monterrey'       ,55200.0);"
-                 "INSERT INTO user(name,email,password,address,country,city,salary) VALUES('Carlos Chávez Guajardo'     ,'carloschavezg@gmail.com'   ,'%s','República de Panamá 79','México'   ,'Hermosillo'      ,41000.0);",
+    sprintf(sql, "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('root'                       ,'root@local'                ,'%s', '1995-2-15'  ,'none'                  ,'none'     ,'none'            ,0.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Carlos Enrique Duarte Ortiz','carlosduarte.1@hotmail.com','%s', '1995-3-25'  ,'Esperanza 1515'        ,'México'   ,'Hermosillo'      ,50000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Ana Lourdes Peña López'     ,'analourdes@hotmail.com'    ,'%s', '1995-4-5'   ,'Palermo 23'            ,'Argentina','Buenos Aires'    ,45000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Kévin Ozuna Pérez'          ,'kevinozuna@gmail.com'      ,'%s', '1995-5-6'   ,'Bachoco 45'            ,'México'   ,'Hermosillo'      ,55000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Javier Domínguez Rodríguez' ,'javierdomi@gmail.com'      ,'%s', '1995-6-7'   ,'Polanco 35'            ,'México'   ,'Ciudad de México',42000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Gabriel Prado Ramírez'      ,'gabryprado@hotmail.com'    ,'%s', '1995-7-8'   ,'Conquistadores 25'     ,'Colombia' ,'Bogotá'          ,36000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Óscar Salazar Ozuna'        ,'oscarsala@hotmail.com'     ,'%s', '1995-8-9'   ,'Simón Bolívar 78'      ,'Venezuela','Caracas'         ,19852.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Christian Miranda Robles'   ,'christianmira10@gmail.com' ,'%s', '1995-9-10'  ,'Mártires de Cananea 22','México'   ,'Hermosillo'      ,41000.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Rosa Grácia Juárez'         ,'rosagracia1@hotmail.com'   ,'%s', '1995-10-11' ,'Hacienda Cazadores 33' ,'México'   ,'Monterrey'       ,55200.0);"
+                 "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Carlos Chávez Guajardo'     ,'carloschavezg@gmail.com'   ,'%s', '1995-11-12' ,'República de Panamá 79','México'   ,'Hermosillo'      ,41000.0);",
             hashArray[0],
             hashArray[1],
             hashArray[2],
@@ -122,10 +125,10 @@ static int seeding_default_users(sqlite3 *db)
             hashArray[7],
             hashArray[8],
             hashArray[9]);
-    return execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
+    return local_storage_execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
 }
 
-static int seeding_default_devices(sqlite3 *db)
+static int local_storage_seeding_default_devices(sqlite3 *db)
 {
     // SQL statement to insert data into the table
     char sql[670];
@@ -139,10 +142,10 @@ static int seeding_default_devices(sqlite3 *db)
                  "INSERT INTO device(name,user_id,price) VALUES('realme',8,3900.0);"
                  "INSERT INTO device(name,user_id,price) VALUES('huawei',9,4350.0);"
                  "INSERT INTO device(name,user_id,price) VALUES('oppo',10,3000.0);");
-    return execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
+    return local_storage_execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
 }
 
-static int seeding_default_products(sqlite3 *db)
+static int local_storage_seeding_default_products(sqlite3 *db)
 {
     // SQL statement to insert data into the table
     char sql[1725];
@@ -166,7 +169,7 @@ static int seeding_default_products(sqlite3 *db)
                  "INSERT INTO product(name,price,quantity_in_stock) VALUES('Micrófono Steren',400.0,600);"
                  "INSERT INTO product(name,price,quantity_in_stock) VALUES('NoBreak Steren',12000.0,300);"
                  "INSERT INTO product(name,price,quantity_in_stock) VALUES('Scanner Canon',7000.0,100);");
-    return execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
+    return local_storage_execute_sql_with_no_data_return(db, sql, "Records created successfully\n");
 }
 
 // Callback function to process the result of the SQL query
@@ -177,7 +180,7 @@ static int countCallback(void *data, int argc, char **argv, char **azColName)
     return 0;
 }
 
-static int get_table_total_record_count(sqlite3 *db, const char *tableName)
+static int local_storage_get_table_total_record_count(sqlite3 *db, const char *tableName)
 {
     // SQL query to select the count of users
     char sql[512];
@@ -202,15 +205,15 @@ static int get_table_total_record_count(sqlite3 *db, const char *tableName)
 
 int local_storage_migrate(sqlite3 *db)
 {
-    if (create_user_table(db) == SQLITE_ERROR)
+    if (local_storage_create_user_table(db) == SQLITE_ERROR)
     {
         return SQLITE_ERROR;
     }
-    if (create_device_table(db) == SQLITE_ERROR)
+    if (local_storage_create_device_table(db) == SQLITE_ERROR)
     {
         return SQLITE_ERROR;
     }
-    if (create_product_table(db) == SQLITE_ERROR)
+    if (local_storage_create_product_table(db) == SQLITE_ERROR)
     {
         return SQLITE_ERROR;
     }
@@ -220,23 +223,23 @@ int local_storage_migrate(sqlite3 *db)
 int local_storage_seeding_data(sqlite3 *db)
 {
     // we only insert data if the current table has no any records
-    if (get_table_total_record_count(db, "user") == 0)
+    if (local_storage_get_table_total_record_count(db, "user") == 0)
     {
-        if (seeding_default_users(db) == SQLITE_ERROR)
+        if (local_storage_seeding_default_users(db) == SQLITE_ERROR)
         {
             return SQLITE_ERROR;
         }
     }
-    if (get_table_total_record_count(db, "device") == 0)
+    if (local_storage_get_table_total_record_count(db, "device") == 0)
     {
-        if (seeding_default_devices(db) == SQLITE_ERROR)
+        if (local_storage_seeding_default_devices(db) == SQLITE_ERROR)
         {
             return SQLITE_ERROR;
         }
     }
-    if (get_table_total_record_count(db, "product") == 0)
+    if (local_storage_get_table_total_record_count(db, "product") == 0)
     {
-        if (seeding_default_products(db) == SQLITE_ERROR)
+        if (local_storage_seeding_default_products(db) == SQLITE_ERROR)
         {
             return SQLITE_ERROR;
         }

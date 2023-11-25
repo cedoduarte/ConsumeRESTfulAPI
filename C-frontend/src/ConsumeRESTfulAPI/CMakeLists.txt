@@ -8,6 +8,8 @@ set(PROJECT_FILES
     application.h
     local_storage.c
     local_storage.h
+    database.c
+    database.h
     utils/regular_expression.c
     utils/regular_expression.h
     utils/restful.c
