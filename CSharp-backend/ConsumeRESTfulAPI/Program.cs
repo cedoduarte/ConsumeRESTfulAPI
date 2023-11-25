@@ -21,7 +21,7 @@ namespace ConsumeRESTfulAPI
         private const string ApiContactUrl = "https://www.example.com/contact";
         private const string ApiLicense = "Free License";
         private const string ApiLicenseUrl = "https://www.example.com/license";
-        private const string ApiSwaggerEndpoint = "/wagger/v1/swagger.json";
+        private const string ApiSwaggerEndpoint = "/swagger/v1/swagger.json";
 
         public static void Main(string[] args)
         {
