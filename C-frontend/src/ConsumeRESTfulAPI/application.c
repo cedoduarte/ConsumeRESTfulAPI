@@ -63,7 +63,6 @@ int app_populate_database(char server[], char user[], char password[], char data
     {
         sqlite3_open(LOCAL_STORAGE_FILENAME, &sqliteConnection);
     }
-
     if (sqliteConnection != NULL)
     {
         if (userCount == 0)
@@ -79,6 +78,12 @@ int app_populate_database(char server[], char user[], char password[], char data
             db_insert_products(mysqlConnection, sqliteConnection);
         }
     }
+    else
+    {
+        printf("mysql-storage: table users already has records!\n");
+        printf("mysql-storage: table devices already has records!\n");
+        printf("mysql-storage: table products already has records!\n");
+    }
 
     // closes SQLite connection
     if (sqliteConnection != NULL)
@@ -89,6 +94,7 @@ int app_populate_database(char server[], char user[], char password[], char data
 
     // closes MySQL connection
     mysql_close(mysqlConnection);
+    mysqlConnection = NULL;
 
     return APP_OK;
 }

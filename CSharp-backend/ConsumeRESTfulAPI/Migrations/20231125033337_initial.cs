@@ -43,12 +43,14 @@ namespace ConsumeRESTfulAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    /*
                     table.ForeignKey(
                         name: "FK_Users_Users_CurrentUserId",
                         column: x => x.CurrentUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    */
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -71,6 +73,7 @@ namespace ConsumeRESTfulAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Devices", x => x.Id);
+                    /*
                     table.ForeignKey(
                         name: "FK_Devices_Users_CurrentUserId",
                         column: x => x.CurrentUserId,
@@ -83,6 +86,7 @@ namespace ConsumeRESTfulAPI.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    */
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -105,15 +109,18 @@ namespace ConsumeRESTfulAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    /*
                     table.ForeignKey(
                         name: "FK_Products_Users_CurrentUserId",
                         column: x => x.CurrentUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    */
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            /*
             migrationBuilder.CreateIndex(
                 name: "IX_Devices_CurrentUserId",
                 table: "Devices",
@@ -133,6 +140,7 @@ namespace ConsumeRESTfulAPI.Migrations
                 name: "IX_Users_CurrentUserId",
                 table: "Users",
                 column: "CurrentUserId");
+            */
         }
 
         /// <inheritdoc />
