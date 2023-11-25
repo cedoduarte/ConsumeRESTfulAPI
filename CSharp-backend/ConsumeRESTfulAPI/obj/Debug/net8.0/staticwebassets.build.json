@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "d1Rom0N5s+/qArg49N4DvzFm2XhdEO7JtZruV/1dlLc=",
+  "Source": "ConsumeRESTfulAPI",
+  "BasePath": "_content/ConsumeRESTfulAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

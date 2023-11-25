@@ -27,5 +27,6 @@ namespace ConsumeRESTfulAPI.Model.Configuration
                 .HasColumnType("DATETIME");
             builder.Property(device => device.CurrentUserId)
                 .HasColumnType("INTEGER");
+        }
     }
 }
