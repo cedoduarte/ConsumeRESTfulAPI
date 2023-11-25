@@ -38,6 +38,16 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.RestoreUser
                 {
                     throw new Exception("The password and confirmed password are not the same!");
                 }
+
+                // checks the current user exists
+                User? currentUser = await _dbContext.Users
+                    .Where(user => user.Id == command.CurrentUserId && !user.IsDeleted)
+                    .FirstOrDefaultAsync(cancel);
+                if (currentUser is null)
+                {
+                    throw new Exception($"{nameof(User)} with ID {command.CurrentUserId} not exists!");
+                }
+
                 User? foundUser = await _dbContext.Users
                     .Where(user => user.IsDeleted 
                                    && user.Email == command.Email 
@@ -49,7 +59,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.RestoreUser
                 }
                 foundUser.IsDeleted = false;
                 foundUser.UpdatedDateTime = DateTime.Now;
-                foundUser.CurrentUserId = foundUser.Id; // the user can only be restored by himself
+                foundUser.CurrentUserId = command.CurrentUserId;
                 _dbContext.Users.Update(foundUser);
                 await _dbContext.SaveChangesAsync(cancel);
                 return true;

@@ -10,9 +10,9 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserById
     public class GetUserByIdHandler : IRequestHandler<GetUserByIdQuery, UserViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GetUserByIdHandler(IMapper mapper, IAppDbContext dbContext)
+        public GetUserByIdHandler(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
@@ -24,6 +24,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserById
             {
                 User? existingUser = await _dbContext.Users
                     .Where(user => !user.IsDeleted && user.Id == query.Id)
+                    .Include(user => user.CurrentUser)
                     .FirstOrDefaultAsync(cancel);
                 if (existingUser is null)
                 {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ConsumeRESTfulAPI.CQRS.Devices.ViewModel;
+using ConsumeRESTfulAPI.Model;
 using ConsumeRESTfulAPI.Model.Interface;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceList
     public class GetDeviceListHandler : IRequestHandler<GetDeviceListQuery, IEnumerable<DeviceViewModel>>
     {
         private readonly IMapper _mapper;
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GetDeviceListHandler(IMapper mapper, IAppDbContext dbContext)
+        public GetDeviceListHandler(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
@@ -25,6 +26,7 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceList
                 {
                     return _mapper.Map<IEnumerable<DeviceViewModel>>(await _dbContext.Devices
                         .Where(device => !device.IsDeleted)
+                        .Include(device => device.CurrentUser)
                         .ToListAsync(cancel));
                 }
                 if (!string.IsNullOrEmpty(query.Keyword))

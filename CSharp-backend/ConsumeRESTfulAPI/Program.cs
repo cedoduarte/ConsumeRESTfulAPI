@@ -1,6 +1,8 @@
 using AutoMapper;
 using ConsumeRESTfulAPI.Model;
 using ConsumeRESTfulAPI.Model.Interface;
+using ConsumeRESTfulAPI.Services;
+using ConsumeRESTfulAPI.Services.Interface;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -96,7 +98,7 @@ namespace ConsumeRESTfulAPI
                 {
                     AppDbContext? dbContext = (AppDbContext?)scope.ServiceProvider.GetService<IAppDbContext>();
                     dbContext?.Database.Migrate();
-                    DbSeeder.DoSeeding(dbContext);
+                    //DbSeeder.DoSeeding(dbContext);
                 }
                 catch (Exception ex)
                 {

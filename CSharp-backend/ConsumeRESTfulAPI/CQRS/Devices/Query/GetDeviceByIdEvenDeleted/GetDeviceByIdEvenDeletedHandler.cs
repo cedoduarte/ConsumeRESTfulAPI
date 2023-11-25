@@ -10,9 +10,9 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceByIdEvenDeleted
     public class GetDeviceByIdEvenDeletedHandler : IRequestHandler<GetDeviceByIdEvenDeletedQuery, DeviceViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GetDeviceByIdEvenDeletedHandler(IMapper mapper, IAppDbContext dbContext)
+        public GetDeviceByIdEvenDeletedHandler(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
@@ -24,6 +24,7 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceByIdEvenDeleted
             {
                 Device? foundDevice = await _dbContext.Devices
                     .Where(device => device.Id == query.Id)
+                    .Include(device => device.CurrentUser)
                     .FirstOrDefaultAsync(cancel);
                 if (foundDevice is null)
                 {

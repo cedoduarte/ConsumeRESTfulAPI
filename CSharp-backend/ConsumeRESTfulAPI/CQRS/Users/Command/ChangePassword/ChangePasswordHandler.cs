@@ -14,6 +14,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.ChangePassword
             _dbContext = dbContext;
         }
 
+        // the user changes his password by himself
         public async Task<bool> Handle(ChangePasswordCommand command, CancellationToken cancel)
         {
             try

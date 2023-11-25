@@ -10,9 +10,9 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserByIdEvenDeleted
     public class GetUserByIdEvenDeletedHandler : IRequestHandler<GetUserByIdEvenDeletedQuery, UserViewModel>
     {
         private readonly IMapper _mapper;
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GetUserByIdEvenDeletedHandler(IMapper mapper, IAppDbContext dbContext)
+        public GetUserByIdEvenDeletedHandler(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
@@ -24,6 +24,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserByIdEvenDeleted
             {
                 User? foundUser = await _dbContext.Users
                     .Where(user => user.Id == query.Id)
+                    .Include(user => user.CurrentUser)
                     .FirstOrDefaultAsync(cancel);
                 if (foundUser is null)
                 {

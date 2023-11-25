@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ConsumeRESTfulAPI.CQRS.Users.ViewModel;
+using ConsumeRESTfulAPI.Model;
 using ConsumeRESTfulAPI.Model.Interface;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,9 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserList
     public class GetUserListHandler : IRequestHandler<GetUserListQuery, IEnumerable<UserViewModel>>
     {
         private readonly IMapper _mapper;
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GetUserListHandler(IMapper mapper, IAppDbContext dbContext)
+        public GetUserListHandler(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
@@ -25,6 +26,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserList
                 {
                     return _mapper.Map<IEnumerable<UserViewModel>>(await _dbContext.Users
                         .Where(user => !user.IsDeleted)
+                        .Include(user => user.CurrentUser)
                         .ToListAsync(cancel));
                 }
                 if (!string.IsNullOrEmpty(query.Keyword))
@@ -38,6 +40,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserList
                                        || !string.IsNullOrEmpty(user.Country) && user.Country.ToLower().Contains(query.Keyword.ToLower().Trim())
                                        || !string.IsNullOrEmpty(user.City) && user.City.ToLower().Contains(query.Keyword.ToLower().Trim())
                                        || user.Salary.ToString().Contains(query.Keyword.ToLower().Trim())))
+                        .Include(user => user.CurrentUser)
                         .ToListAsync(cancel));
                 }
                 throw new Exception("The keyword cannot be empty!");

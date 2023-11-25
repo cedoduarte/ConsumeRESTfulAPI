@@ -1,4 +1,5 @@
-﻿using ConsumeRESTfulAPI.Model.Interface;
+﻿using ConsumeRESTfulAPI.Model;
+using ConsumeRESTfulAPI.Model.Interface;
 using ConsumeRESTfulAPI.Utils;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +8,9 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.LogIn
 {
     public class LogInHandler : IRequestHandler<LogInCommand, bool>
     {
-        private readonly IAppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public LogInHandler(IAppDbContext dbContext)
+        public LogInHandler(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -34,7 +35,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.LogIn
                     .Where(user => !user.IsDeleted
                                    && user.Email == command.Email
                                    && user.Password == Util.ToSHA256(command.Password))
-                    .FirstOrDefaultAsync(cancel) != null;
+                    .FirstOrDefaultAsync(cancel) is not null;
             }
             catch (Exception)
             {
