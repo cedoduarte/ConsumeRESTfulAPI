@@ -33,13 +33,34 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Query.GetUserList
                 {
                     return _mapper.Map<IEnumerable<UserViewModel>>(await _dbContext.Users
                         .Where(user => !user.IsDeleted
-                                       && (
-                                       !string.IsNullOrEmpty(user.Name) && user.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                       || !string.IsNullOrEmpty(user.Email) && user.Email.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                       || !string.IsNullOrEmpty(user.Address) && user.Address.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                       || !string.IsNullOrEmpty(user.Country) && user.Country.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                       || !string.IsNullOrEmpty(user.City) && user.City.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                       || user.Salary.ToString().Contains(query.Keyword.ToLower().Trim())))
+                            && (
+                                    (
+                                        string.IsNullOrEmpty(user.Name) ? false : user.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    || 
+                                    (
+                                        string.IsNullOrEmpty(user.Email) ? false : user.Email.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    || 
+                                    (
+                                        user.Birthdate == null ? false : user.Birthdate.ToString().ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    ||
+                                    (
+                                        string.IsNullOrEmpty(user.Address) ? false : user.Address.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    ||
+                                    (
+                                        string.IsNullOrEmpty(user.Country) ? false : user.Country.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    ||
+                                    (
+                                        string.IsNullOrEmpty(user.City) ? false : user.City.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                    )
+                                    ||
+                                    user.Salary.ToString().Contains(query.Keyword.ToLower().Trim())
+                                )
+                            )
                         .Include(user => user.CurrentUser)
                         .ToListAsync(cancel));
                 }

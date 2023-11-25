@@ -33,9 +33,15 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceList
                 {
                     return _mapper.Map<IEnumerable<DeviceViewModel>>(await _dbContext.Devices
                         .Where(device => !device.IsDeleted
-                                         && (
-                                         !string.IsNullOrEmpty(device.Name) && device.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                         || !string.IsNullOrEmpty(device.User!.Name) && device.User.Name.ToLower().Contains(query.Keyword.ToLower().Trim())))
+                            && (
+                                (
+                                    string.IsNullOrEmpty(device.Name) ? false : device.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
+                                )
+                                || 
+                                (
+                                    string.IsNullOrEmpty(device.User!.Name) ? false : device.User.Name.ToLower().Contains(query.Keyword.ToLower().Trim()))
+                                )
+                            )
                         .Include(device => device.User)
                         .ToListAsync(cancel));
                 }

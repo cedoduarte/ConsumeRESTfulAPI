@@ -32,9 +32,11 @@ namespace ConsumeRESTfulAPI.CQRS.Products.Query.GetProductList
                 {
                     return _mapper.Map<IEnumerable<ProductViewModel>>(await _dbContext.Products
                         .Where(product => !product.IsDeleted
-                                          && (
-                                          !string.IsNullOrEmpty(product.Name) && product.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
-                                          || product.Price.ToString().Contains(query.Keyword.ToLower().Trim())))
+                        && (
+                            (
+                                string.IsNullOrEmpty(product.Name) ? false : product.Name.ToLower().Contains(query.Keyword.ToLower().Trim())
+                            ) || product.Price.ToString().Contains(query.Keyword.ToLower().Trim()))
+                        )
                         .Include(product => product.CurrentUser)
                         .ToListAsync(cancel));
                 }

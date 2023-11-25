@@ -7,39 +7,44 @@ namespace ConsumeRESTfulAPI.Model.Configuration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(user => user.Id);
             builder.Property(user => user.Name)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(256)");
             builder.Property(user => user.Email)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(256)");
-            //builder.HasIndex(user => user.Email)
-            //    .IsUnique();
             builder.Property(user => user.Password)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(256)");
+            builder.Property(user => user.Birthdate)
+                .IsRequired(true)
+                .HasColumnType("DATETIME(6)");
             builder.Property(user => user.Address)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(512)");
             builder.Property(user => user.Country)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(512)");
             builder.Property(user => user.City)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(512)");
             builder.Property(user => user.Salary)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("DECIMAL(10, 2)");
             builder.Property(user => user.IsDeleted)
+                //.IsRequired(false)
                 .HasColumnType("BOOLEAN");
             builder.Property(user => user.InsertedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(user => user.UpdatedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(user => user.DeletedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(user => user.CurrentUserId)
+                //.IsRequired(false)
                 .HasColumnType("INTEGER");
         }
     }

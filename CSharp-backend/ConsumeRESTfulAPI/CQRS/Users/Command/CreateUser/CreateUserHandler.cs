@@ -47,6 +47,10 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.CreateUser
                 {
                     throw new Exception("The password and confirmed password are not the same!");
                 }
+                if (command.Birthdate is null)
+                {
+                    throw new Exception("The birthdate cannot be empty!");
+                }
                 if (string.IsNullOrEmpty(command.Address))
                 {
                     throw new Exception("The address cannot be empty!");
@@ -71,6 +75,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.CreateUser
                     Name = command.Name,
                     Email = command.Email,
                     Password = Util.ToSHA256(command.Password),
+                    Birthdate = command.Birthdate,
                     Address = command.Address,
                     Country = command.Country,
                     City = command.City,

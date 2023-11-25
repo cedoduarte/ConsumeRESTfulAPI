@@ -34,6 +34,10 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.UpdateUser
                 {
                     throw new Exception("The password cannot be empty!");
                 }
+                if (command.Birthdate is null)
+                {
+                    throw new Exception("The birthdate cannot be empty!");
+                }
                 if (string.IsNullOrEmpty(command.Address))
                 {
                     throw new Exception("The address cannot be empty!");
@@ -66,6 +70,7 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.UpdateUser
                 existingUser.Name = command.Name;
                 existingUser.Email = command.Email;
                 existingUser.Password = Util.ToSHA256(command.Password);
+                existingUser.Birthdate = command.Birthdate;
                 existingUser.Address = command.Address;
                 existingUser.Country = command.Country;
                 existingUser.City = command.City;

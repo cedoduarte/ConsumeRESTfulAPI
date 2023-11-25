@@ -7,25 +7,29 @@ namespace ConsumeRESTfulAPI.Model.Configuration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(product => product.Id);
             builder.Property(product => product.Name)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("VARCHAR(128)");
             builder.Property(product => product.Price)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("DECIMAL(10, 2)");
             builder.Property(product => product.QuantityInStock)
-                .IsRequired()
+                .IsRequired(true)
                 .HasColumnType("INTEGER");
             builder.Property(product => product.IsDeleted)
+                //.IsRequired(false)
                 .HasColumnType("BOOLEAN");
             builder.Property(product => product.InsertedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(product => product.UpdatedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(product => product.DeletedDateTime)
-                .HasColumnType("DATETIME");
+                .IsRequired(false)
+                .HasColumnType("DATETIME(6)");
             builder.Property(product => product.CurrentUserId)
+                //.IsRequired(false)
                 .HasColumnType("INTEGER");
         }
     }
