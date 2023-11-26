@@ -1,0 +1,3 @@
+C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\testcu.dir/objects.a
+C:\Qt\Tools\mingw1120_64\bin\ar.exe qc CMakeFiles\testcu.dir/objects.a @CMakeFiles\testcu.dir\objects1.rsp
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\testcu.dir/objects.a -Wl,--no-whole-archive -o testcu.exe -Wl,--out-implib,libtestcu.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\testcu.dir\linklibs.rsp
