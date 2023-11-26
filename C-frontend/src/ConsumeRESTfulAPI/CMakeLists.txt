@@ -18,6 +18,8 @@ set(PROJECT_FILES
     utils/sha256.h
     utils/sqlite3.c
     utils/sqlite3.h
+    utils/util_string.c
+    utils/util_string.h
 )
 
 set(LIBS_DIR

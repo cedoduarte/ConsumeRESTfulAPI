@@ -43,16 +43,18 @@ namespace ConsumeRESTfulAPI.CQRS.Users.Command.ChangePassword
                 {
                     throw new Exception("The passwords are not the same!");
                 }
+                string currentPasswordHash = Util.ToSHA256(command.CurrentPassword);
                 User? existingUser = await _dbContext.Users
                     .Where(user => !user.IsDeleted 
                                    && string.Equals(user.Email, command.Email) 
-                                   && string.Equals(user.Password, Util.ToSHA256(command.CurrentPassword)))
+                                   && string.Equals(user.Password, currentPasswordHash))
                     .FirstOrDefaultAsync(cancel);
                 if (existingUser is null)
                 {
                     throw new Exception($"{nameof(User)} with email {command.Email} not exists!");
                 }
-                existingUser.Password = Util.ToSHA256(command.NewPassword);
+                string newPasswordHash = Util.ToSHA256(command.NewPassword);
+                existingUser.Password = newPasswordHash;
                 existingUser.UpdatedDateTime = DateTime.Now;
                 existingUser.CurrentUserId = existingUser.Id;
                 _dbContext.Users.Update(existingUser);

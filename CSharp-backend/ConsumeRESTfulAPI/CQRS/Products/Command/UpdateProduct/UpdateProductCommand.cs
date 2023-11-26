@@ -8,7 +8,6 @@ namespace ConsumeRESTfulAPI.CQRS.Products.Command.UpdateProduct
         public string? Name { get; set; }
         public int Price { get; set; }
         public int QuantityInStock { get; set; }
-        public bool IsDeleted { get; set; }
         public int CurrentUserId { get; set; }
     }
 }

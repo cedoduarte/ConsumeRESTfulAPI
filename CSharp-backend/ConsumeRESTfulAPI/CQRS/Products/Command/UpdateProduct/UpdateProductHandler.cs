@@ -41,6 +41,7 @@ namespace ConsumeRESTfulAPI.CQRS.Products.Command.UpdateProduct
                 existingProduct.Name = command.Name;
                 existingProduct.Price = command.Price;
                 existingProduct.QuantityInStock = command.QuantityInStock;
+                existingProduct.UpdatedDateTime = DateTime.Now;
                 existingProduct.CurrentUserId = command.CurrentUserId;
                 _dbContext.Products.Update(existingProduct);
                 await _dbContext.SaveChangesAsync(cancel);

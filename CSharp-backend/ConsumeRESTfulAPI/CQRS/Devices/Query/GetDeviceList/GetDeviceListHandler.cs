@@ -43,6 +43,7 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceList
                                 )
                             )
                         .Include(device => device.User)
+                        .Include(device => device.CurrentUser)
                         .ToListAsync(cancel));
                 }
                 throw new Exception("The keyword cannot be empty!");

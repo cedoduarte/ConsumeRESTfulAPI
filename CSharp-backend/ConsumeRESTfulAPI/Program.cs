@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace ConsumeRESTfulAPI
 {
@@ -26,6 +27,10 @@ namespace ConsumeRESTfulAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
             builder.Services.AddSingleton<IConfiguration>(notUsed =>
             {
                 string? environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

@@ -165,17 +165,14 @@ char* to_sha256(char data[])
     unsigned char hash[32];
     char *hashStr = malloc(65);
     strcpy(hashStr, "");
-
     sha256_init(&ctx);
     sha256_update(&ctx, data, strLen);
     sha256_final(&ctx, hash);
-
     char s[3];
     for (int i = 0; i < 32; i++)
     {
         sprintf(s, "%02x", hash[i]);
         strcat(hashStr, s);
     }
-
     return hashStr;
 }

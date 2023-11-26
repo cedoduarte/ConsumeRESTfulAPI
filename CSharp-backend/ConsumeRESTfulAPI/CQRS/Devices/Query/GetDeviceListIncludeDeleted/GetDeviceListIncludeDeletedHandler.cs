@@ -41,6 +41,7 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceListIncludeDeleted
                             )
                         )
                         .Include(device => device.User)
+                        .Include(device => device.CurrentUser)
                         .ToListAsync(cancel));
                 }
                 throw new Exception("The keyword cannot be empty!");

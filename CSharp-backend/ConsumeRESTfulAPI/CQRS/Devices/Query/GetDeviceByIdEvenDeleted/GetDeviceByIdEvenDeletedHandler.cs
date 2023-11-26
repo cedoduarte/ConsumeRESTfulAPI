@@ -24,6 +24,7 @@ namespace ConsumeRESTfulAPI.CQRS.Devices.Query.GetDeviceByIdEvenDeleted
             {
                 Device? foundDevice = await _dbContext.Devices
                     .Where(device => device.Id == query.Id)
+                    .Include(device => device.User)
                     .Include(device => device.CurrentUser)
                     .FirstOrDefaultAsync(cancel);
                 if (foundDevice is null)

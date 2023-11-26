@@ -1,5 +1,4 @@
 #include "local_storage.h"
-#include "utils/sha256.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -83,28 +82,33 @@ static int local_storage_create_product_table(sqlite3 *db)
 
 static int local_storage_seeding_default_users(sqlite3 *db)
 {
-    char *passwords[DEFAULT_USER_COUNT] = {
-        "root",       // administrator
-        "cduarte",    // Carlos Enrique Duarte Ortiz
-        "apena",      // Ana Lourdes Peña López
-        "kozuna",     // Kévin Ozuna Pérez
-        "jdominguez", // Javier Domínguez Rodríguez
-        "gprado",     // Gabriel Prado Ramírez
-        "osalazar",   // Óscar Salazar Ozuna
-        "cmiranda",   // Christan Miranda Robles
-        "rgracia",    // Rosa Gracia Juarez
-        "cchavez"     // Carlos Chavez Guajardo
+    /*
+    "root",       // administrator
+    "cduarte",    // Carlos Enrique Duarte Ortiz
+    "apena",      // Ana Lourdes Peña López
+    "kozuna",     // Kévin Ozuna Pérez
+    "jdominguez", // Javier Domínguez Rodríguez
+    "gprado",     // Gabriel Prado Ramírez
+    "osalazar",   // Óscar Salazar Ozuna
+    "cmiranda",   // Christan Miranda Robles
+    "rgracia",    // Rosa Gracia Juarez
+    "cchavez"     // Carlos Chavez Guajardo
+    */
+    char *hashArray[DEFAULT_USER_COUNT] = {
+        "4813494d137e1631bba31d5acab6e7bb7aa74ce1185d456565ef51d737677b2",  // root
+        "51fed9a64af344048fc5728f64675d34c7876927a22bee96b2a4172285941d",   // cduarte
+        "1fcd586d878e01b7fc94d5ba229fe5a3e228ec54df1638cecced6c9b4e1e",     // apena
+        "6f2da887612fd03887bf669ccabf7b58f2e258958d0b7e544b25b86851a179",   // kozuna
+        "bf2d11e63ec01d7118cfad367b6e84977d9ff45663cf1f921f744becdb14b4bd", // jdominguez
+        "c2ad4783513ccdea0348e9faaf040a72b9f921a50792d9e28568498e752a27b",  // gprado
+        "c5b532e0624611d7844fb55ddb87ba3d54064ee305f48d7f1af20af3ba7270",   // osalazar
+        "c0fc82b78b770ce805896a139e76896161fb84b8958846978160f2d78f12",     // cmiranda
+        "d2d44458d7c7ee3fe6966d8dac148546fd27f76f4e9cfca2fb55586e18c4330",  // rgracia
+        "84ad9371989db9696823cf2496a158b6ec06b84af7ca73792f4a69d8936e7"     // cchavez
     };
-    char hashArray[DEFAULT_USER_COUNT][128];
-    for (int i = 0; i < DEFAULT_USER_COUNT; i++)
-    {
-        char *hash = to_sha256(passwords[i]);
-        sprintf(hashArray[i], hash);
-        free(hash);
-    }
 
     // SQL statement to insert data into the table
-    char sql[2700];
+    char sql[3000];
     sprintf(sql, "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('root'                       ,'root@local'                ,'%s', '1995-2-15'  ,'none'                  ,'none'     ,'none'            ,0.0);"
                  "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Carlos Enrique Duarte Ortiz','carlosduarte.1@hotmail.com','%s', '1995-3-25'  ,'Esperanza 1515'        ,'México'   ,'Hermosillo'      ,50000.0);"
                  "INSERT INTO user(name,email,password,birthdate,address,country,city,salary) VALUES('Ana Lourdes Peña López'     ,'analourdes@hotmail.com'    ,'%s', '1995-4-5'   ,'Palermo 23'            ,'Argentina','Buenos Aires'    ,45000.0);"
