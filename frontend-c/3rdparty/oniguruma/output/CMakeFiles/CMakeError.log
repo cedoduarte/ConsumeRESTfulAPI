@@ -1,0 +1,46 @@
+Determining if files alloca.h exist failed with the following output:
+Change Dir: C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe -f Makefile cmTC_f129e/fast && C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_f129e.dir\build.make CMakeFiles/cmTC_f129e.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f129e.dir/HAVE_ALLOCA_H.c.obj
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe    -o CMakeFiles\cmTC_f129e.dir\HAVE_ALLOCA_H.c.obj -c C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\C-frontend\3rdparty\oniguruma\output\CMakeFiles\CheckIncludeFiles\HAVE_ALLOCA_H.c
+C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\C-frontend\3rdparty\oniguruma\output\CMakeFiles\CheckIncludeFiles\HAVE_ALLOCA_H.c:2:10: fatal error: alloca.h: No such file or directory
+    2 | #include <alloca.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+mingw32-make.exe[1]: *** [CMakeFiles\cmTC_f129e.dir\build.make:77: CMakeFiles/cmTC_f129e.dir/HAVE_ALLOCA_H.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp'
+mingw32-make.exe: *** [Makefile:126: cmTC_f129e/fast] Error 2
+
+
+Source:
+/* */
+#include <alloca.h>
+
+
+int main(void){return 0;}
+
+Determining if files sys/times.h exist failed with the following output:
+Change Dir: C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe -f Makefile cmTC_7ef91/fast && C:/Qt/Tools/mingw1120_64/bin/mingw32-make.exe  -f CMakeFiles\cmTC_7ef91.dir\build.make CMakeFiles/cmTC_7ef91.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ef91.dir/HAVE_SYS_TIMES_H.c.obj
+C:\Qt\Tools\mingw1120_64\bin\gcc.exe    -o CMakeFiles\cmTC_7ef91.dir\HAVE_SYS_TIMES_H.c.obj -c C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\C-frontend\3rdparty\oniguruma\output\CMakeFiles\CheckIncludeFiles\HAVE_SYS_TIMES_H.c
+C:\Users\carlo\OneDrive\Documentos\QtProjects\ConsumeRESTfulAPI\C-frontend\3rdparty\oniguruma\output\CMakeFiles\CheckIncludeFiles\HAVE_SYS_TIMES_H.c:2:10: fatal error: sys/times.h: No such file or directory
+    2 | #include <sys/times.h>
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+mingw32-make.exe[1]: *** [CMakeFiles\cmTC_7ef91.dir\build.make:77: CMakeFiles/cmTC_7ef91.dir/HAVE_SYS_TIMES_H.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/carlo/OneDrive/Documentos/QtProjects/ConsumeRESTfulAPI/C-frontend/3rdparty/oniguruma/output/CMakeFiles/CMakeTmp'
+mingw32-make.exe: *** [Makefile:126: cmTC_7ef91/fast] Error 2
+
+
+Source:
+/* */
+#include <sys/times.h>
+
+
+int main(void){return 0;}
+
